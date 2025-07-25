@@ -1,5 +1,6 @@
 export const initialStore=()=>{
   return{
+    favorites: [],
     message: null,
     todos: [
       {
@@ -17,16 +18,21 @@ export const initialStore=()=>{
 }
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
-    case 'add_task':
-
-      const { id,  color } = action.payload
-
+  switch (action.type) {
+    case "TOGGLE_FAVORITE":
+      const exists = state.favorites.find(
+        fav => fav.uid === action.payload.uid && fav.type === action.payload.type
+      );
       return {
-        ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+        ...state,
+        favorites: exists
+          ? state.favorites.filter(
+              fav => !(fav.uid === action.payload.uid && fav.type === action.payload.type)
+            )
+          : [...state.favorites, action.payload]
       };
+
     default:
-      throw Error('Unknown action.');
-  }    
+      return state;
+  }
 }

@@ -1,0 +1,21 @@
+body {
+    background: #575f68;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #ffc107; /* Bootstrap warning color */
+  border-radius: 10px;
+  border: 2px solid #343a40; /* Dark background to blend */
+}
+
+.custom-scrollbar {
+  scrollbar-color: #ffc107 transparent;
+  scrollbar-width: thin;
+}
